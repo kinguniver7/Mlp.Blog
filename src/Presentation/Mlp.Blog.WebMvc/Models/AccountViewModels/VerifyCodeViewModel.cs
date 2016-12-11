@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Mlp.Blog.WebMvc.Models.AccountViewModels
+namespace Mlp.Blog.Services.Messages
 {
     public class VerifyCodeViewModel
     {

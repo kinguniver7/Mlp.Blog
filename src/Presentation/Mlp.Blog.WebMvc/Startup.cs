@@ -9,9 +9,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Mlp.Blog.WebMvc.Data;
 using Mlp.Blog.WebMvc.Models;
-using Mlp.Blog.WebMvc.Services;
+using Mlp.Blog.Services.Messages;
+using Mlp.Blog.Core.Domain;
+using Mlp.Blog.Data;
 
 namespace Mlp.Blog.WebMvc
 {

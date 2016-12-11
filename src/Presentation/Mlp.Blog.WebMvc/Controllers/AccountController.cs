@@ -8,9 +8,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
-using Mlp.Blog.WebMvc.Models;
 using Mlp.Blog.WebMvc.Models.AccountViewModels;
-using Mlp.Blog.WebMvc.Services;
+using Mlp.Blog.Core.Domain;
+using Mlp.Blog.Services.Messages;
 
 namespace Mlp.Blog.WebMvc.Controllers
 {

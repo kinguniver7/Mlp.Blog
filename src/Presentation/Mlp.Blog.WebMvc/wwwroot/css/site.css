@@ -207,12 +207,22 @@ h1, h2, h3, h4, h5, h6 {
 	vertical-align: middle;
 }
 
+.phone{
+    margin-top:21px;
+}
+
 /*====================
 ======Header CSS=====
 ======================*/
-
+.navbar-brand{
+    color:#43484E!important;
+}
+.navbar-brand:hover,
+.navbar-brand:focus{
+    color:#43484E!important;
+} 
 #navigation .navbar {
-  background:rgba(255, 255, 255, 0.952941);
+  background:rgba(255, 255, 255, 1);
   border-radius: 0;
   border-bottom: 0;
   box-shadow: rgba(0, 0, 0, 0.298039) 0px 0px 3px;
@@ -568,7 +578,7 @@ font-family:'Western_Script_Open';
 ======================*/
 
 #services {
-  background-image: url("../images/services/service-bg.jpg");
+  background-image: url("../images/idea-paper.jpg");
   color:#fff;
   text-align:center;
   background-color:	#0A0A13;
@@ -1248,10 +1258,6 @@ font-family:'Western_Script_Open';
 #contact-form .name-field {
 	margin-right:2%;	
 	float:left
-}
-
-#contact-form .mail-field {
-	
 }
 
 #contact-form-section .form-control {

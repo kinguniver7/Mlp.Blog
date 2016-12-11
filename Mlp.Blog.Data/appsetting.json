@@ -1,0 +1,5 @@
+﻿{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=aspnet-Mlp.Blog.WebMvc-8933196b-a779-4d73-94fa-8c2d10f4605e;Trusted_Connection=True;MultipleActiveResultSets=true"
+  }
+}
