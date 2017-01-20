@@ -1,8 +1,6 @@
 {
   "userSecretsId": "aspnet-Mlp.Blog.WebMvc-8933196b-a779-4d73-94fa-8c2d10f4605e",
-  "runtimes": {
-    "win10-x64": {}
-  },
+
   "dependencies": {
     "Microsoft.AspNetCore.Authentication.Cookies": "1.1.0",
     "Microsoft.AspNetCore.Diagnostics": "1.1.0",
@@ -26,7 +24,7 @@
     },
     "Mlp.Blog.Core": "1.0.0-*",
     "Mlp.Blog.Services": "1.0.0-*",
-    "BundlerMinifier.Core": "2.2.301",
+    "BundlerMinifier.Core": "2.2.306",
     "Microsoft.AspNetCore.Server.Kestrel": "1.1.0",
     "Microsoft.AspNetCore.StaticFiles": "1.1.0",
     "Microsoft.EntityFrameworkCore.SqlServer.Design": "1.1.0",
@@ -37,9 +35,13 @@
     "Microsoft.Extensions.Logging.Console": "1.1.0",
     "Microsoft.Extensions.Logging.Debug": "1.1.0",
     "Microsoft.Extensions.Options.ConfigurationExtensions": "1.1.0",
-    "Microsoft.NETCore.App": "1.1.0",
+    "Microsoft.NETCore.App": {
+      "type": "platform",
+      "version": "1.1.0"
+    },
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.1.0",
-    "Mlp.Blog.Data": "1.0.0-*"
+    "Mlp.Blog.Data": "1.0.0-*",
+    "Microsoft.DotNet.InternalAbstractions": "1.0.0"
   },
 
   "tools": {

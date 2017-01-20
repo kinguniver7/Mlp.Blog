@@ -197,6 +197,54 @@ namespace Mlp.Blog.Data.Migrations
                     b.ToTable("Comment");
                 });
 
+            modelBuilder.Entity("Mlp.Blog.Core.Domain.Page.PgMenu", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Action");
+
+                    b.Property<string>("Anchor");
+
+                    b.Property<string>("Area");
+
+                    b.Property<string>("Controller");
+
+                    b.Property<string>("FaIcon");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<string>("Name");
+
+                    b.Property<int?>("PgMenuParentId");
+
+                    b.Property<string>("Tooltip");
+
+                    b.Property<int>("TypeMenuId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PgMenuParentId");
+
+                    b.HasIndex("TypeMenuId");
+
+                    b.ToTable("PgMenu");
+                });
+
+            modelBuilder.Entity("Mlp.Blog.Core.Domain.Page.PgTypeMenu", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Alias");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PgTypeMenu");
+                });
+
             modelBuilder.Entity("Mlp.Blog.Core.Domain.Post", b =>
                 {
                     b.Property<int>("Id")
@@ -271,6 +319,18 @@ namespace Mlp.Blog.Data.Migrations
                     b.HasOne("Mlp.Blog.Core.Domain.Post", "Post")
                         .WithMany("Comments")
                         .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Mlp.Blog.Core.Domain.Page.PgMenu", b =>
+                {
+                    b.HasOne("Mlp.Blog.Core.Domain.Page.PgMenu", "PgMenuParent")
+                        .WithMany("PgMenuChilds")
+                        .HasForeignKey("PgMenuParentId");
+
+                    b.HasOne("Mlp.Blog.Core.Domain.Page.PgTypeMenu", "TypeMenu")
+                        .WithMany()
+                        .HasForeignKey("TypeMenuId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

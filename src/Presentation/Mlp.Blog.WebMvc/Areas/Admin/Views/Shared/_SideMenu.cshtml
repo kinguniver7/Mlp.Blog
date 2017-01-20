@@ -1,0 +1,59 @@
+﻿@inject Mlp.Blog.Services.Menu.Abstract.IContentMenuService _serviceMenu
+@{ 
+    var allMenus = _serviceMenu.GetMainPgMenu(includeSinglPage: true).ToList();
+}
+<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+    <div class="menu_section">
+        <h3>Main</h3>
+        <ul class="nav side-menu">
+            <li>
+                <a><i class="fa fa-newspaper-o"></i> Pages <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                    @foreach (var item in allMenus)
+                    {
+                        if (item.PgMenuChilds.Count() > 0)
+                        {
+                            <li>
+                                <a>@item.Name<span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li class="sub_menu">
+                                        <a style="@Html.TextDecoration_LineThrough(!item.IsActive)" asp-action="Index" asp-controller="PageSetting" asp-area="Admin" asp-route-id="@item.Id">Root</a>
+                                    </li>
+                                    @foreach (var sub in item.PgMenuChilds)
+                                    {
+                                        <li class="sub_menu">
+                                            <a style="@Html.TextDecoration_LineThrough(!sub.IsActive)" asp-action="Index" asp-controller="PageSetting" asp-area="Admin" asp-route-id="@sub.Id">@sub.Name</a>
+                                        </li>
+                                    }
+                                </ul>
+                            </li>
+
+                        }
+                        else if (item.IsMainMenu())
+                        {
+                            <li style="@Html.TextDecoration_LineThrough(!item.IsActive)"><a asp-action="Index" asp-controller="PageSetting" asp-area="Admin" asp-route-id="@item.Id">@item.Name </a></li>
+                        }
+                    }
+                    @*
+             <li>
+                <a>Home<span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                    <li class="sub_menu">
+                        <a href="level2.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="#level2_1">Service</a>
+                    </li>
+                    <li>
+                        <a href="#level2_2">About us</a>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="index3.html">Blog</a></li>
+            <li><a href="index2.html">Contact</a></li>*@
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+@await Component.InvokeAsync("AdminMenu")

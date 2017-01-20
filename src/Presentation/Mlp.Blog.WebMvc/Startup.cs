@@ -11,8 +11,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Mlp.Blog.WebMvc.Models;
 using Mlp.Blog.Services.Messages;
+using Mlp.Blog.Services.Menu.Abstract;
 using Mlp.Blog.Core.Domain;
 using Mlp.Blog.Data;
+using Mlp.Blog.Core.Data;
+using Mlp.Blog.Services.Menu;
 
 namespace Mlp.Blog.WebMvc
 {
@@ -49,10 +52,15 @@ namespace Mlp.Blog.WebMvc
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
-
+            services.AddRouting(opt=>opt.LowercaseUrls = true);
+            //DI (IoC)
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
-            services.AddTransient<ISmsSender, AuthMessageSender>();
+            services.AddTransient<ISmsSender, AuthMessageSender>();            
+            services.AddTransient(typeof(IRepository<,>), typeof(SqlRepository<,>));
+
+            services.AddTransient<IContentMenuService, ContentMenuService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -75,11 +83,14 @@ namespace Mlp.Blog.WebMvc
             app.UseStaticFiles();
 
             app.UseIdentity();
-
             // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
 
             app.UseMvc(routes =>
             {
+                routes.MapRoute(
+                    name:"areaAdmin",
+                    template: "{area=Admin}/{controller=Admin}/{action=Index}/{id?}");
+
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");

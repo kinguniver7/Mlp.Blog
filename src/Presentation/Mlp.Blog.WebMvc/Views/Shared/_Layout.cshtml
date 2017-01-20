@@ -4,7 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Mlp.Blog.WebMvc</title>
-
+    <!-- Polyfill(s) for older browsers -->
+    @*<script src="node_modules/core-js/client/shim.min.js"></script>
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>*@
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css"/>
@@ -19,34 +23,7 @@
     </environment>
 </head>
 <body>
-    <header id="navigation">
-        <div class="navbar navbar-inverse navbar-fixed-top" role="banner">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
-                    </button>
-                    <div class="navbar-brand">
-                        <div class="row">
-                            <div class="col-xs-5"><img src="~/images/malpinsoft.jpg" height="60" alt="logo"></div>
-                            <div class="col-xs-7"><div class="phone"><span class="fa fa-phone-square"></span> +380991787676</div></div>
-                        </div>
-                        
-                    </div>
-                    @*<div class="navbar-brand"><h1>Malpinsoft</h1></div>*@
-
-                </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="scroll active"><a href="#navigation">Home</a></li>
-                        <li class="scroll"><a href="#services">Services</a></li>
-                        <li class="scroll"><a href="#blog">Blog</a></li>
-                        <li class="scroll"><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div><!--/navbar-->
-    </header>
+    @Html.Partial("_MainMenu")
 
     @RenderBody()
 

@@ -1,0 +1,36 @@
+﻿@inject Mlp.Blog.Services.Menu.Abstract.IContentMenuService _menuService
+@{ 
+    var mainMenu = _menuService.GetMainPgMenu(includeSinglPage: true);
+}
+<div class="collapse navbar-collapse">
+    <ul class="nav navbar-nav navbar-right">
+        @*<li class="scroll active"><a href="#navigation">Home</a></li>
+            <li class="scroll"><a href="#services">Services</a></li>
+            <li class="scroll"><a href="#blog">Blog</a></li>
+            <li class="scroll"><a href="#contact">Contact</a></li>*@
+        <li class="scroll active"><a href="#navigation">Home</a></li>
+        @foreach (var item in mainMenu)
+        {
+            if (item.IsActive)
+            {
+                if (item.IsMainMenu() && item.PgMenuChilds.Count() > 0)
+                {
+                    <li class="scroll"><a href="@Url.Action(item.Action, item.Controller, new { area = item.Area })">@item.Name</a></li>
+                }
+                else if (_menuService.IsSinglPageMenu(item.TypeMenu))
+                {
+                    <li class="scroll"><a href="#@item.Anchor">@item.Name</a></li>
+                }
+                else if (item.IsMainMenu())
+                {
+                    <li><a href="@Url.Action(item.Action, item.Controller, new { area = item.Area })">@item.Name</a></li>
+                }
+            }
+
+        }
+
+    </ul>
+
+
+
+</div>

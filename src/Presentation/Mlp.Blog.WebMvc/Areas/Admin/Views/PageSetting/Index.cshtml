@@ -1,0 +1,18 @@
+﻿@model PageSettingViewModel
+
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>Edit @Model.MenuInfo.Name</h3>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    @Html.Partial("_EditMenuInfo", Model.MenuInfo)
+</div>
+@section styles{
+    <link rel="stylesheet" href="~/lib/switchery/dist/switchery.css"/>
+}
+
+@section scripts{ 
+<script src="~/lib/switchery/dist/switchery.js"></script>
+}

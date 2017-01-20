@@ -8,15 +8,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
+using Mlp.Blog.Core.Domain.Page;
 
 namespace Mlp.Blog.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        private const string _connectionDb = @"Server=(localdb)\mssqllocaldb;Database=MyDatabase;Trusted_Connection=True;";
         public DbSet<Post> Posts { get; set; }
 
         public DbSet<Comment> Comments { get; set; }
-        
+
+        public DbSet<PgMenu> PgMenus { get; set; }
+
+        public DbSet<PgTypeMenu> PgTypeMenus { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {            
@@ -24,7 +30,7 @@ namespace Mlp.Blog.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=MyDatabase;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(_connectionDb);
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -42,12 +48,12 @@ namespace Mlp.Blog.Data
     }
 
     public class TemporaryDbContextFactory : IDbContextFactory<ApplicationDbContext>
-    {
+    {private const string _connectionDb = @"Server=(localdb)\mssqllocaldb;Database=MyDatabase;Trusted_Connection=True;";
         public ApplicationDbContext Create()
         {
             var builder = new DbContextOptionsBuilder<ApplicationDbContext>();
 
-            builder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=aspnet-Mlp.Blog.WebMvc;Trusted_Connection=True;MultipleActiveResultSets=true");
+            builder.UseSqlServer(_connectionDb);
             return new ApplicationDbContext(builder.Options);
         }
 
