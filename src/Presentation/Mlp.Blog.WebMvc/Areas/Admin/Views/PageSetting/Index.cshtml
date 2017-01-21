@@ -1,12 +1,7 @@
 ﻿@model PageSettingViewModel
 
 <div class="">
-    <div class="page-title">
-        <div class="title_left">
-            <h3>Edit @Model.MenuInfo.Name</h3>
-        </div>
-    </div>
-    <div class="clearfix"></div>
+    @Html.PageTitle($"Edit {Model.MenuInfo.Name}")
     @Html.Partial("_EditMenuInfo", Model.MenuInfo)
 </div>
 @section styles{

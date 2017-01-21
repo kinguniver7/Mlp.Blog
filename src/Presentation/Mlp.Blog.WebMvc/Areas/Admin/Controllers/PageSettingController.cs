@@ -6,22 +6,26 @@ using Microsoft.AspNetCore.Mvc;
 using Mlp.Blog.Core.Data;
 using Mlp.Blog.Core.Domain.Page;
 using Mlp.Blog.WebMvc.Areas.Admin.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Mlp.Blog.WebMvc.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class PageSettingController : Controller
     {
-        private readonly IRepository<PgMenu, int> _repPgMenu;
-        public PageSettingController(IRepository<PgMenu, int> repPgMenu)
+        private readonly IRepository<PgMenu, int> _repPgMenus;
+        private readonly IRepository<PgTypeMenu, int> _repPgTypesOfMenu;
+
+        public PageSettingController(IRepository<PgMenu, int> repPgMenus, IRepository<PgTypeMenu, int> repPgTypesOfMenu)
         {
-            _repPgMenu = repPgMenu;
+            _repPgMenus = repPgMenus;
+            _repPgTypesOfMenu = repPgTypesOfMenu;
         }
         [HttpGet]
         
         public IActionResult Index(int id)
         {
-            var pgMenu = _repPgMenu.GetById(id);
+            var pgMenu = _repPgMenus.GetById(id);
 
             var model = new PageSettingViewModel();
             model.MenuInfo = new PgMenuViewModel
@@ -38,12 +42,17 @@ namespace Mlp.Blog.WebMvc.Areas.Admin.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Update info for menu
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult UpdateMenuInfo(PgMenuViewModel model)
         {
             if (model.Id < 1)
                 return NotFound();
-            var entity = _repPgMenu.GetById(model.Id);
+            var entity = _repPgMenus.GetById(model.Id);
             entity.Name = model.Name;
             entity.IsActive = model.IsActive;
             entity.Action = model.Action;
@@ -52,9 +61,21 @@ namespace Mlp.Blog.WebMvc.Areas.Admin.Controllers
             entity.Controller = model.Controller;
             entity.FaIcon = model.FaIcon;
             entity.Tooltip = model.Tooltip;
-            _repPgMenu.Update(entity);
+            _repPgMenus.Update(entity);
 
             return RedirectToAction("Index", new { id = model.Id });
+        }
+
+        /// <summary>
+        /// Create new page
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult CreatePage()
+        {
+            var types = _repPgTypesOfMenu.GetAll().Select(x => new { Id = x.Id, Value = x.Name });
+            var model = new CreatePageViewModel();
+            model.TypePageList = new SelectList(types, "Id", "Value");
+            return View(model);
         }
     }
 }

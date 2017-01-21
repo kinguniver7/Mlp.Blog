@@ -7,6 +7,10 @@
         <h3>Main</h3>
         <ul class="nav side-menu">
             <li>
+                <a asp-action="CreatePage" asp-controller="PageSetting" asp-area="Admin"><i class="fa fa-plus"></i> Create page</a>
+            </li>
+
+            <li>
                 <a><i class="fa fa-newspaper-o"></i> Pages <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                     @foreach (var item in allMenus)
@@ -31,9 +35,13 @@
                         }
                         else if (item.IsMainMenu())
                         {
-                            <li style="@Html.TextDecoration_LineThrough(!item.IsActive)"><a asp-action="Index" asp-controller="PageSetting" asp-area="Admin" asp-route-id="@item.Id">@item.Name </a></li>
+                            <li style="@Html.TextDecoration_LineThrough(!item.IsActive)">
+                                <a asp-action="Index" asp-controller="PageSetting" asp-area="Admin" asp-route-id="@item.Id">@item.Name </a>
+                            </li>                            
                         }
                     }
+                    
+
                     @*
              <li>
                 <a>Home<span class="fa fa-chevron-down"></span></a>

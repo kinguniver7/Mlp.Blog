@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -32,5 +33,12 @@ namespace Mlp.Blog.WebMvc.Areas.Admin.Models
 
         public bool IsActive { get; set; }
 
+    }
+
+    public class CreatePageViewModel
+    {
+        public int TypePageId { get; set; }
+
+        public SelectList TypePageList { get; set; }
     }
 }
