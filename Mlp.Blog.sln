@@ -26,7 +26,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mlp.Blog.Services", "Mlp.Bl
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Mlp.Blog.Services", "src\Libraries\Mlp.Blog.Services\Mlp.Blog.Services.xproj", "{2BCE3EC3-B964-437F-9FBF-B80B4D3CEE93}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Mlp.Blog.Data", "Mlp.Blog.Data\Mlp.Blog.Data.xproj", "{9937C754-0FB9-468F-AFA3-4806453FA198}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Mlp.Blog.Data", "src\Libraries\Mlp.Blog.Data\Mlp.Blog.Data.xproj", "{9937C754-0FB9-468F-AFA3-4806453FA198}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
